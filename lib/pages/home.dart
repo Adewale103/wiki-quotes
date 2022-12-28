@@ -11,7 +11,7 @@ class _HomeState extends State<Home> {
   Map data = {};
   @override
   Widget build(BuildContext context) {
-    data = data.isNotEmpty ? data : ModalRoute.of(context)?.settings.arguments as Map;
+    data = ModalRoute.of(context)?.settings.arguments as Map;
     return  Scaffold(
         backgroundColor: Colors.blue[400],
         body: SafeArea(
@@ -26,14 +26,7 @@ class _HomeState extends State<Home> {
                        children: <Widget> [
                          ElevatedButton.icon(
                              onPressed: () async {
-                               dynamic result = await Navigator.pushNamed(context, '/quotes');
-                               setState(() {
-                                 data = {
-                                   "author" : result.author,
-                                   "content" : result.content,
-                                   "dateAdded" : result.dateAdded
-                                 };
-                               });
+                               await Navigator.pushNamed(context, '/quotes');
                              }, icon: Icon(Icons.menu_book_sharp),
                                 label: Text(
                                  "Change Quote Category",

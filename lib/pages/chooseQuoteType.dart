@@ -3,7 +3,7 @@ import 'package:wiki_quotes/services/quoteCategory.dart';
 import 'package:wiki_quotes/services/quoteUtils.dart';
 
 class ChooseQuoteType extends StatefulWidget {
-  const ChooseQuoteType({Key? key}) : super(key: key);
+  const ChooseQuoteType({super.key});
 
   @override
   State<ChooseQuoteType> createState() => _ChooseQuoteTypeState();
@@ -30,7 +30,7 @@ class _ChooseQuoteTypeState extends State<ChooseQuoteType> {
       quoteUtils.getMaxLength140Quote();
     }
 
-    Navigator.pop(context,{
+    Navigator.pushNamed(context,"/home", arguments: {
      "author" : quoteUtils.author,
       "content" : quoteUtils.content,
       "dateAdded" : quoteUtils.dateAdded
@@ -56,7 +56,10 @@ class _ChooseQuoteTypeState extends State<ChooseQuoteType> {
                   onTap: () {
                     updateQuote(index);
                   },
-                  title: Text(categories[index].name),
+                  title: Text(categories[index].name,
+                  style: TextStyle(
+                    fontSize: 20
+                  ),),
                   leading: CircleAvatar(
                     backgroundImage: AssetImage("assets/${categories[index].picture}"),
                   ),
